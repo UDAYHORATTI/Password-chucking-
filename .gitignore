@@ -1,0 +1,41 @@
+import re
+
+def check_password_strength(password):
+    """
+    Function to check the strength of a given password.
+    A strong password must:
+    - Be at least 8 characters long
+    - Include at least one uppercase letter
+    - Include at least one lowercase letter
+    - Include at least one digit
+    - Include at least one special character (!@#$%^&*()-_+=)
+    """
+    # Define the criteria for a strong password
+    min_length = 8
+    has_upper = re.search(r'[A-Z]', password)
+    has_lower = re.search(r'[a-z]', password)
+    has_digit = re.search(r'\d', password)
+    has_special = re.search(r'[!@#$%^&*()\-_=+]', password)
+
+    # Check each criterion
+    if len(password) < min_length:
+        return "Password must be at least 8 characters long."
+    if not has_upper:
+        return "Password must include at least one uppercase letter."
+    if not has_lower:
+        return "Password must include at least one lowercase letter."
+    if not has_digit:
+        return "Password must include at least one digit."
+    if not has_special:
+        return "Password must include at least one special character (!@#$%^&*()-_+=)."
+
+    return "Password is strong."
+
+def main():
+    print("Welcome to the Password Strength Checker!")
+    password = input("Please enter a password to check its strength: ")
+    result = check_password_strength(password)
+    print(result)
+
+if __name__ == "__main__":
+    main()
